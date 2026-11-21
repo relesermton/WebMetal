@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="theme-color" content="#05070d" />
+  <title>WebMetal — Metal-style rendering in the browser</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <canvas id="wm-canvas" aria-label="WebMetal render target"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <header class="hud top-left">
+    <div class="brand">
+      <div class="logo"><span>WM</span></div>
+      <div class="brand-text">
+        <h1>WebMetal<span class="ver">/ 1.0</span></h1>
+        <p>Metal-style rendering engine <span class="dot">·</span> Canvas2D software renderer</p>
+      </div>
+    </div>
+  </header>
+
+  <aside class="hud top-right panel stats" id="stats-panel">
+    <div class="panel-title"><span class="pulse"></span> Render stats</div>
+    <dl>
+      <div><dt>FPS</dt><dd id="s-fps">—</dd></div>
+      <div><dt>Frame</dt><dd id="s-frame">—</dd></div>
+      <div><dt>Draw calls</dt><dd id="s-draws">—</dd></div>
+      <div><dt>Triangles</dt><dd id="s-tris">—</dd></div>
+      <div><dt>Resolution</dt><dd id="s-res">—</dd></div>
+      <div><dt>Rasterizer</dt><dd id="s-samples">—</dd></div>
+      <div><dt>Backend</dt><dd id="s-backend">—</dd></div>
+    </dl>
+  </aside>
+
+  <section class="hud bottom-left panel controls">
+    <div class="panel-title">Controls</div>
+    <div class="control-row">
+      <button id="btn-orbit" class="ctl active" type="button"><span class="key">O</span> Auto-orbit</button>
+      <button id="btn-wire" class="ctl" type="button"><span class="key">W</span> Wireframe</button>
+      <button id="btn-pause" class="ctl" type="button"><span class="key">Space</span> Pause</button>
+      <button id="btn-reset" class="ctl" type="button"><span class="key">R</span> Reset view</button>
+    </div>
+    <p class="hint">Drag to orbit <span class="dot">·</span> Scroll to zoom <span class="dot">·</span> Double-click to reset</p>
+  </section>
+
+  <aside class="hud bottom-right panel caps">
+    <div class="panel-title">Capabilities</div>
+    <ul>
+      <li><span class="check">✓</span> No GPU required</li>
+      <li><span class="check">✓</span> CPU rasterizer</li>
+      <li><span class="check">✓</span> Depth sorting</li>
+      <li><span class="check">✓</span> Flat lighting</li>
+      <li><span class="check">✓</span> Full pipeline API</li>
+    </ul>
+  </aside>
+
+  <div id="overlay" class="overlay">
+    <div class="overlay-card">
+      <div class="spinner"></div>
+      <h2 id="ov-title">Initializing WebMetal</h2>
+      <p id="ov-msg">Requesting GPU adapter…</p>
+      <pre id="ov-detail"></pre>
+    </div>
+  </div>
+
+  <script src="./math.js"></script>
+  <script src="./webmetal.js"></script>
+  <script src="./main.js"></script>
+</body>
+</html>
